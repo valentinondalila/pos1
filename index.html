@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f4ef">
+    <meta name="description" content="A fast, simple point of sale for Valentino." />
+    <title>Valentino | Point of sale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#sale"><span class="brand-mark">V<span>.</span></span><span class="brand-copy"><strong>valentino</strong><small>POINT OF SALE</small></span></a>
+        <p class="nav-label">WORKSPACE</p>
+        <nav class="nav-list">
+          <button class="nav-item active" data-view="sale"><span>▦</span>New sale</button>
+          <button class="nav-item" data-view="orders"><span>↗</span>Orders <b id="order-count">0</b></button>
+          <button class="nav-item" data-view="inventory"><span>▤</span>Inventory</button>
+          <button class="nav-item" data-view="policies"><span>◎</span>Store policies</button>
+        </nav>
+        <div class="sidebar-bottom"><span class="status"><i></i>Ready for business</span><div class="profile"><span class="avatar">V</span><span><strong>Valentino</strong><small>Store owner</small></span></div></div>
+      </aside>
+      <main class="main-content">
+        <header class="topbar"><div>Workspace <span>/</span> <strong id="page-title">New sale</strong></div><div class="top-actions"><time id="today-label"></time><a href="mailto:ndalilavalentino@gmail.com">✉ Email</a><a class="whatsapp" href="https://wa.me/07147756" target="_blank" rel="noreferrer">◉ WhatsApp</a></div></header>
+        <section class="view active" id="sale-view">
+          <div class="sale-layout"><div class="catalog">
+            <div class="page-heading"><div><p class="eyebrow">A FRESH START</p><h1>New sale<span>.</span></h1><p class="subheading">A good day to make someone’s day.</p></div><div class="time-chip" id="sale-clock"></div></div>
+            <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Find a product..." /><kbd>/</kbd></label>
+            <div class="categories" id="categories"></div><div class="product-grid" id="products"></div>
+            <div class="catalog-foot"><span>● Prices shown in <strong>USD</strong></span><button class="text-button" data-open-product>+ Add a product</button></div>
+          </div>
+          <aside class="cart"><div class="cart-heading"><div><p class="eyebrow">CHECKOUT</p><h2>Current sale</h2></div><button class="icon-button" id="clear-cart" title="Clear sale">⌫</button></div>
+            <label class="customer">♙ <input id="customer" placeholder="Add customer name (optional)" /></label>
+            <div class="cart-items" id="cart-items"></div><label class="note">↳ <input id="note" placeholder="Add a note to this sale" /></label>
+            <div class="totals"><span>Subtotal</span><strong id="subtotal">$0.00</strong><span class="grand-label">Total</span><strong class="grand-total" id="total">$0.00</strong></div>
+            <button class="checkout" id="checkout" disabled><span>Complete sale</span><strong id="checkout-total">$0.00 →</strong></button><p class="payment-note">◇ This tool does not process payments</p>
+          </aside></div>
+        </section>
+        <section class="view secondary" id="orders-view"><div class="page-heading"><div><p class="eyebrow">YOUR BUSINESS, AT A GLANCE</p><h1>Orders<span>.</span></h1><p class="subheading">Every completed sale, right here.</p></div></div><div class="summary"><div><span>Today’s sales</span><strong id="summary-sales">$0.00</strong></div><div><span>Transactions</span><strong id="summary-count">0</strong></div><div><span>Average sale</span><strong id="summary-average">$0.00</strong></div></div><h2 class="section-title">Recent transactions</h2><div class="table-wrap"><table><thead><tr><th>ORDER</th><th>CUSTOMER</th><th>ITEMS</th><th>DATE</th><th>TOTAL</th></tr></thead><tbody id="orders"></tbody></table><p class="empty-message" id="orders-empty">Your completed sales will appear here.</p></div></section>
+        <section class="view secondary" id="inventory-view"><div class="page-heading"><div><p class="eyebrow">KEEP THINGS IN STOCK</p><h1>Inventory<span>.</span></h1><p class="subheading">Your products, prices, and quantities.</p></div><button class="primary-button" data-open-product>+ Add a product</button></div><div class="inventory-tools"><span><i></i> <strong id="product-count">0</strong> products</span><label class="search inventory-search"><span>⌕</span><input id="inventory-search" type="search" placeholder="Search inventory..." /></label></div><div class="table-wrap"><table><thead><tr><th>PRODUCT</th><th>CATEGORY</th><th>PRICE</th><th>IN STOCK</th><th>ACTIONS</th></tr></thead><tbody id="inventory"></tbody></table></div></section>
+        <section class="view secondary policy-page" id="policies-view"><div class="page-heading"><div><p class="eyebrow">THE IMPORTANT DETAILS</p><h1>Store policies<span>.</span></h1><p class="subheading">A clear, fair starting point for your customers.</p></div></div><div class="policy-intro"><strong>A note from Valentino</strong><p>We want every purchase to feel right. Here’s how we handle the details.</p></div><div class="policy-list">
+          <article><span>01</span><div><h2>Returns & exchanges</h2><p>Items may be returned or exchanged within 14 days of purchase with proof of purchase. Items must be unused and in their original condition. Hygiene, safety, or custom-made items may not be returnable unless faulty. Please contact us before returning an item.</p></div></article>
+          <article><span>02</span><div><h2>Payments</h2><p>Payment is due at checkout. Accepted payment methods are confirmed in store. Prices are displayed in USD and may be updated without notice. This POS records sales but does not collect or process card or mobile-money payments.</p></div></article>
+          <article><span>03</span><div><h2>Orders & availability</h2><p>Product availability and stock counts are estimates and may change. We’ll contact you if an item is unavailable. Special or custom orders are confirmed with the customer before preparation.</p></div></article>
+          <article><span>04</span><div><h2>Privacy</h2><p>Customer names and sale notes are stored only in this browser on this device. Use customer details only to support a purchase or respond to a request. Do not enter payment credentials or sensitive personal information.</p></div></article>
+          <article><span>05</span><div><h2>Questions or support</h2><p>Contact Valentino at <a href="mailto:ndalilavalentino@gmail.com">ndalilavalentino@gmail.com</a> or <a href="https://wa.me/07147756" target="_blank" rel="noreferrer">WhatsApp: 07147756</a>.</p></div></article>
+        </div><p class="disclaimer">Starter policies: review and adapt these to your products and local consumer-protection and privacy laws before publishing.</p></section>
+      </main>
+    </div>
+    <dialog id="receipt-dialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button><p class="eyebrow">SALE COMPLETE</p><h2>Thank you!</h2><p id="receipt-message"></p><div class="receipt-total"><span>Total</span><strong id="receipt-total"></strong></div><p class="receipt-id" id="receipt-id"></p><button class="primary-button" value="done">Done</button></form></dialog>
+    <dialog id="product-dialog"><form id="product-form"><button type="button" class="dialog-close" id="close-product" aria-label="Close">×</button><p class="eyebrow">INVENTORY</p><h2>Add a product</h2><label>Product name<input required id="new-name" maxlength="48" placeholder="e.g. Fresh flowers" /></label><div class="form-row"><label>Price (USD)<input required id="new-price" type="number" min="0.01" step="0.01" placeholder="0.00" /></label><label>Quantity<input required id="new-stock" type="number" min="0" step="1" value="10" /></label></div><label>Category<input required id="new-category" maxlength="24" placeholder="e.g. Gifts" /></label><div class="form-actions"><button class="secondary-button" type="button" id="cancel-product">Cancel</button><button class="primary-button">Save product</button></div></form></dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
